@@ -261,6 +261,45 @@
         font-size: 0.7rem;
       }
     }
+    .overlay {
+      position: absolute;
+      top: 0;
+      width: 100%;
+      background: rgba(0,0,0,0.6);
+      color: #fff;
+      padding: 0.5rem;
+      text-align: center;
+    }
+    .overlay h4 {
+      margin: 0;
+      font-size: 1rem;
+      font-weight: bold;
+    }
+    .overlay p {
+      margin: 0;
+      font-size: 0.75rem;
+    }
+    .demo-gallery {
+      margin-top: 0.75rem;
+      display: flex;
+      gap: 0.5rem;
+      justify-content: center;
+    }
+
+    .demo-gallery img {
+      width: 80px;
+      height: 140px;
+      object-fit: cover;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+
+    .demo-gallery img:hover {
+      transform: scale(1.05);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.5);
+    }
   </style>
 </head>
 <body>
@@ -310,42 +349,74 @@
   <section class="mockups">
     <div class="mockup-item">
       <div class="screen">
-        <img src="https://picsum.photos/seed/mockup1/180/360" alt="App Mockup 1">
-        <div class="tab-bar">
-          <span>Home</span>
-          <span>Search</span>
-          <span>Profile</span>
+        <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=180&q=80" alt="MealMatch App" loading="lazy">
+        <div class="overlay">
+          <h4>MealMatch</h4>
+          <p>AI-Powered Meal Planner</p>
         </div>
+        <div class="tab-bar">
+          <span>Meals</span>
+          <span>Planner</span>
+          <span>Grocery</span>
+        </div>
+      </div>
+      <div class="demo-gallery">
+        <img src="https://images.unsplash.com/photo-1600891963935-51c9b3036721?auto=format&fit=crop&w=80&q=80" alt="MealMatch Plan" loading="lazy" />
+        <img src="https://images.unsplash.com/photo-1613141411329-25f1e2a5c30d?auto=format&fit=crop&w=80&q=80" alt="MealMatch Recipe" loading="lazy" />
       </div>
     </div>
     <div class="mockup-item">
       <div class="screen">
-        <img src="https://picsum.photos/seed/mockup2/180/360" alt="App Mockup 2">
+        <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?fit=crop&w=180&q=80" alt="FitPulse App" loading="lazy">
+        <div class="overlay">
+          <h4>FitPulse</h4>
+          <p>Your Fitness Pulse Tracker</p>
+        </div>
         <div class="tab-bar">
-          <span>Home</span>
-          <span>Search</span>
+          <span>Workout</span>
+          <span>Heart</span>
           <span>Profile</span>
         </div>
+      </div>
+      <div class="demo-gallery">
+        <img src="https://images.unsplash.com/photo-1554284126-aa88f22d8b74?fit=crop&w=80&q=80" alt="FitPulse Dashboard" loading="lazy" />
+        <img src="https://images.unsplash.com/photo-1605296867304-46d5465a13f1?fit=crop&w=80&q=80" alt="FitPulse Stats" loading="lazy" />
+      </div>
+    </div>
+    <div class="mockup-item">
+      <div class="overlay">
+        <img src="https://images.unsplash.com/photo-1611605698327-63f43c1e8af4?auto=format&fit=crop&w=180&q=80" alt="ChoreChamp App" loading="lazy">
+        <div class="overlay">
+          <h4>ChoreChamp</h4>
+          <p>Gamify Your Household Tasks</p>
+        </div>
+        <div class="tab-bar">
+          <span>Tasks</span>
+          <span>Leaderboard</span>
+          <span>Rewards</span>
+        </div>
+      </div>
+      <div class="demo-gallery">
+        <img src="https://images.unsplash.com/photo-1610173827255-1b8b0fb8c57b?auto=format&fit=crop&w=80&q=80" alt="ChoreChamp Rewards" loading="lazy" />
+        <img src="https://images.unsplash.com/photo-1581579185169-4b6472f74210?auto=format&fit=crop&w=80&q=80" alt="ChoreChamp Tasks" loading="lazy" />
       </div>
     </div>
     <div class="mockup-item">
       <div class="screen">
-        <img src="https://picsum.photos/seed/mockup3/180/360" alt="App Mockup 3">
+        <img src="https://images.unsplash.com/photo-1518717758536-85ae29035b6d?fit=crop&w=180&q=80" alt="PetPal App" loading="lazy">
+        <div class="overlay">
+          <h4>PetPal</h4>
+          <p>Stay Connected to Your Pets</p>
+        </div>
         <div class="tab-bar">
-          <span>Home</span>
-          <span>Search</span>
-          <span>Profile</span>
+          <span>Pets</span>
+          <span>Chat</span>
+          <span>Care</span>
         </div>
       </div>
-    </div>
-    <div class="mockup-item">
-      <div class="screen">
-        <img src="https://picsum.photos/seed/mockup4/180/360" alt="App Mockup 4">
-        <div class="tab-bar">
-          <span>Home</span>
-          <span>Search</span>
-          <span>Profile</span>
-        </div>
+      <div class="demo-gallery">
+        <img src="https://images.unsplash.com/photo-1601758123927-1963fd121bda?fit=crop&w=80&q=80" alt="PetPal Feed" loading="lazy" />
+        <img src="https://images.unsplash.com/photo-1583511655794-0314a1a4a8d0?fit=crop&w=80&q=80" alt="PetPal Messages" loading="lazy" />
       </div>
     </div>
   </section>
@@ -353,7 +424,7 @@
   <a href="https://www.paypal.com/ncp/payment/B67ZGQUYE62PG" class="buy-button" target="_blank" rel="noopener noreferrer">Buy Your $500 Mockup Now</a>
 
   <footer>
-    <p>© 2025 Jimmy Louis. All rights reserved.</p>
+    <p>© 2025 MockupApp. All rights reserved.</p>
   </footer>
 </body>
 </html>
