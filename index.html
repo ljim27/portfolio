@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jimmy Louis | App Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Roboto', sans-serif;
+      background: linear-gradient(to right, #0f172a, #1e293b);
+      color: #e2e8f0;
+      line-height: 1.6;
+      padding-bottom: 60px;
+    }
+
+    header {
+      background: linear-gradient(135deg, #6366f1, #8b5cf6);
+      padding: 2rem 1rem;
+      text-align: center;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.4);
+      color: white;
+    }
+
+    header h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+    }
+
+    header p {
+      font-weight: 400;
+      margin-top: 0.5rem;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: auto;
+      padding: 2rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .app {
+      background: #1e293b;
+      padding: 1.5rem;
+      border-radius: 12px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border: 1px solid #6366f1;
+      box-shadow: 0 0 10px rgba(99, 102, 241, 0.4);
+    }
+
+    .app:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+    }
+
+    .app h2 {
+      color: #a5b4fc;
+      margin-bottom: 0.75rem;
+      font-weight: 500;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+    }
+    .app h2 a {
+      color: #a5b4fc;
+      text-decoration: none;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+    }
+    .app h2 a:hover {
+      text-decoration: underline;
+    }
+
+    .app p {
+      font-size: 0.9rem;
+      color: #94a3b8;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background: #1e293b;
+      position: fixed;
+      width: 100%;
+      bottom: 0;
+      color: #94a3b8;
+    }
+
+    @media (max-width: 768px) {
+      header h1 {
+        font-size: 2rem;
+      }
+    }
+
+    /* Offer and Mockup Sections */
+    .offer {
+      background: linear-gradient(135deg, #ff7e5f, #feb47b);
+      padding: 2rem;
+      border-radius: 12px;
+      max-width: 800px;
+      margin: 2rem auto;
+      text-align: center;
+      color: #fff;
+      box-sizing: border-box;
+    }
+    .offer h2 {
+      margin-bottom: 1rem;
+      font-size: 2rem;
+    }
+    .offer p {
+      margin-bottom: 1.5rem;
+    }
+    .offer form {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+      width: 100%;
+    }
+    .offer input,
+    .offer textarea {
+      padding: 0.75rem;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+    }
+    .offer button {
+      grid-column: span 2;
+      padding: 0.75rem;
+      background: #6366f1;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+    .offer button:hover {
+      background: #8b5cf6;
+    }
+    .mockups {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+      margin: 2rem 0;
+    }
+    .mockup-item {
+      width: 180px;
+      height: 360px;
+      background: linear-gradient(145deg, #6366f1, #8b5cf6);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
+      transform: rotate(-5deg);
+      transition: transform 0.3s ease;
+      position: relative;
+    }
+    .mockup-item:nth-child(2) { transform: rotate(3deg); }
+    .mockup-item:nth-child(3) { transform: rotate(-2deg); }
+    .mockup-item:nth-child(4) { transform: rotate(4deg); }
+    .mockup-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .mockup-item:hover {
+      transform: scale(1.05) rotate(0deg);
+      transition: transform 0.3s ease-in-out;
+    }
+    .screen {
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
+    .buy-button {
+      display: inline-block;
+      margin: 2rem auto;
+      padding: 1rem 2rem;
+      background: linear-gradient(90deg, #ff4d4d, #ff9900);
+      color: #fff;
+      border: none;
+      border-radius: 50px;
+      font-size: 1.25rem;
+      cursor: pointer;
+      box-shadow: 0 6px 15px rgba(255, 77, 77, 0.4);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      max-width: 300px;
+      text-align: center;
+      white-space: nowrap;
+    }
+    .buy-button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 8px 20px rgba(255, 153, 0, 0.6);
+    }
+    @keyframes flash {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
+    }
+    .flash {
+      display: inline-block;
+      animation: flash 1.5s ease-in-out infinite;
+    }
+    .details {
+      background: #1e293b;
+      color: #e2e8f0;
+      max-width: 800px;
+      margin: 2rem auto;
+      padding: 1.5rem;
+      border-radius: 12px;
+      text-align: left;
+    }
+    .details h3 {
+      font-size: 1.75rem;
+      margin-bottom: 1rem;
+      color: #c7d2fe;
+    }
+    .details ul {
+      list-style-type: disc;
+      margin-left: 1.5rem;
+    }
+    .details ul li {
+      margin-bottom: 0.5rem;
+      font-size: 1rem;
+    }
+    .screen .tab-bar {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 40px;
+      background: rgba(0,0,0,0.6);
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      color: #fff;
+      font-size: 0.8rem;
+      border-top: 1px solid rgba(255,255,255,0.3);
+    }
+    .screen .tab-bar span {
+      flex: 1;
+      text-align: center;
+    }
+
+    @media (max-width: 480px) {
+      .mockups {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .mockup-item {
+        width: 90vw;
+        height: calc(90vw * 2); /* maintain aspect ratio */
+        transform: rotate(0deg); /* remove rotation on mobile */
+      }
+
+      .screen .tab-bar {
+        font-size: 0.7rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1><span class="flash">App Mockup Services – $500</span></h1>
+    <p>Bring your app idea to life with vibrant, eye-catching mockups for just $500.</p>
+  </header>
+
+  <div class="container">
+    <div class="app">
+      <h2><a href="https://apps.apple.com/us/app/binaryme/id6742085556" target="_blank" rel="noopener noreferrer">BinaryMe2</a></h2>
+      <p>Mobile compatibility analysis app using binary logic for deeper insights.</p>
+    </div>
+    <div class="app">
+      <h2><a href="https://apps.apple.com/us/app/screenshield/id6747040428" target="_blank" rel="noopener noreferrer">ScreenShield</a></h2>
+      <p>Fake installation screens to deter unauthorized phone use with customizable animations.</p>
+    </div>
+  </div>
+
+  <section class="details">
+    <h3>Your $500 Mockup Includes:</h3>
+    <ul>
+      <li>High-fidelity app screens with real device mockups</li>
+      <li>Interactive UI elements and animations showcase</li>
+      <li>Custom color palette and typography</li>
+      <li>Up to 3 rounds of feedback and revisions</li>
+      <li>Delivered in under 3 weeks</li>
+    </ul>
+    <p>Turn your idea into an interactive prototype and wow stakeholders with a life-like demo—fast!</p>
+  </section>
+
+  <!-- Mockup Offer Section -->
+  <section class="offer">
+    <h2>Get Your App Idea Mockup for $500</h2>
+    <p>Bring your app idea to life with vibrant, eye-catching mockups.</p>
+    <form action="https://formsubmit.co/jimmylou27@yahoo.com" method="POST">
+      <input type="hidden" name="_redirect" value="https://mockupapp.online/thankyou.html" />
+      <input type="hidden" name="_captcha" value="false" />
+      <input type="text" name="name" placeholder="Your Name" required>
+      <input type="email" name="email" placeholder="Your Email" required>
+      <input type="tel" name="phone" placeholder="Your Phone Number">
+      <textarea name="idea" placeholder="Describe Your Idea" rows="4" required></textarea>
+      <button type="submit">Submit Your Idea</button>
+    </form>
+  </section>
+  <!-- Mockups Gallery Section -->
+  <section class="mockups">
+    <div class="mockup-item">
+      <div class="screen">
+        <img src="https://picsum.photos/seed/mockup1/180/360" alt="App Mockup 1">
+        <div class="tab-bar">
+          <span>Home</span>
+          <span>Search</span>
+          <span>Profile</span>
+        </div>
+      </div>
+    </div>
+    <div class="mockup-item">
+      <div class="screen">
+        <img src="https://picsum.photos/seed/mockup2/180/360" alt="App Mockup 2">
+        <div class="tab-bar">
+          <span>Home</span>
+          <span>Search</span>
+          <span>Profile</span>
+        </div>
+      </div>
+    </div>
+    <div class="mockup-item">
+      <div class="screen">
+        <img src="https://picsum.photos/seed/mockup3/180/360" alt="App Mockup 3">
+        <div class="tab-bar">
+          <span>Home</span>
+          <span>Search</span>
+          <span>Profile</span>
+        </div>
+      </div>
+    </div>
+    <div class="mockup-item">
+      <div class="screen">
+        <img src="https://picsum.photos/seed/mockup4/180/360" alt="App Mockup 4">
+        <div class="tab-bar">
+          <span>Home</span>
+          <span>Search</span>
+          <span>Profile</span>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Purchase Button -->
+  <a href="https://www.paypal.com/ncp/payment/B67ZGQUYE62PG" class="buy-button" target="_blank" rel="noopener noreferrer">Buy Your $500 Mockup Now</a>
+
+  <footer>
+    <p>© 2025 Jimmy Louis. All rights reserved.</p>
+  </footer>
+</body>
+</html>
