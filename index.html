@@ -102,11 +102,12 @@
       background: linear-gradient(135deg, #ff7e5f, #feb47b);
       padding: 2rem;
       border-radius: 12px;
-      max-width: 800px;
       margin: 2rem auto;
       text-align: center;
       color: #fff;
       box-sizing: border-box;
+      width: 100%;
+      max-width: none;
     }
     .offer h2 {
       margin-bottom: 1rem;
@@ -117,9 +118,10 @@
     }
     .offer form {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: 1fr 1fr;
       gap: 1rem;
-      width: 100%;
+      max-width: 800px;
+      margin: 0 auto;
     }
     .offer input,
     .offer textarea {
@@ -336,7 +338,7 @@
     <h2>Get Your App Idea Mockup for $500</h2>
     <p>Bring your app idea to life with vibrant, eye-catching mockups.</p>
     <form action="https://formsubmit.co/jimmylou27@yahoo.com" method="POST">
-      <input type="hidden" name="_redirect" value="http://127.0.0.1:5500/thankyou.html" />
+      <input type="hidden" name="_redirect" value="https://mockupapponline.netlify.app/thankyou.html" />
       <input type="hidden" name="_captcha" value="false" />
       <input type="text" name="name" placeholder="Your Name" required>
       <input type="email" name="email" placeholder="Your Email" required>
