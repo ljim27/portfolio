@@ -339,11 +339,12 @@
     <p>Bring your app idea to life with vibrant, eye-catching mockups.</p>
     <form action="https://formsubmit.co/jimmylou27@yahoo.com" method="POST">
       <input type="hidden" name="_redirect" value="https://mockupapponline.netlify.app/thankyou.html" />
-      <input type="hidden" name="_captcha" value="false" />
-      <input type="text" name="name" placeholder="Your Name" required>
-      <input type="email" name="email" placeholder="Your Email" required>
-      <input type="tel" name="phone" placeholder="Your Phone Number">
-      <textarea name="idea" placeholder="Describe Your Idea" rows="4" required></textarea>
+      <input type="hidden" name="_captcha" value="true" />
+      <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true" />
+      <input type="text" name="name" placeholder="Your Name" maxlength="100" required>
+      <input type="email" name="email" placeholder="Your Email" maxlength="254" required>
+      <input type="tel" name="phone" placeholder="Your Phone Number" maxlength="20" pattern="[0-9+()\-.\s]{7,20}">
+      <textarea name="idea" placeholder="Describe Your Idea" rows="4" maxlength="5000" required></textarea>
       <button type="submit">Submit Your Idea</button>
     </form>
   </section>
@@ -407,13 +408,11 @@
   <!-- Purchase Button -->
   <a href="https://www.paypal.com/ncp/payment/B67ZGQUYE62PG" class="buy-button" target="_blank" rel="noopener noreferrer">Buy Your $500 Mockup Now</a>
 
-</body>
   <section style="background: #ff4d4d; color: white; padding: 1.5rem; text-align: center; margin: 2rem auto; max-width: 800px; border-radius: 10px; box-shadow: 0 0 15px rgba(0,0,0,0.4); font-size: 0.95rem;">
     <p><strong>Disclaimer:</strong> We do not entertain any requests related to spamware, malware, spyware, or apps that violate any local or international laws. All app ideas submitted remain fully confidential. We do not steal, share, or replicate your intellectual property. Your trust and privacy are 100% respected.</p>
   </section>
   <footer>
     <p>© 2025 MockupApp. All rights reserved.</p>
   </footer>
-</body>
 </body>
 </html>
