@@ -44,31 +44,113 @@
       transform: scale(1.05);
       box-shadow: 0 8px 20px rgba(255, 153, 0, 0.6);
     }
+    .status {
+      margin-top: 1.5rem;
+      padding: 1rem 1.25rem;
+      border-radius: 8px;
+      max-width: 600px;
+      font-size: 1rem;
+    }
+    .status[hidden] {
+      display: none;
+    }
+    .status.error {
+      background: rgba(255, 77, 77, 0.15);
+      border: 1px solid #ff4d4d;
+      color: #ffd7d7;
+    }
+    .status.success {
+      background: rgba(34, 197, 94, 0.15);
+      border: 1px solid #22c55e;
+      color: #d7ffe6;
+    }
   </style>
 </head>
 <body>
   <h1>Thank you!</h1>
   <p>Your idea is one step closer to life. Your $500 app mockup journey starts now.</p>
   <div id="paypal-button-container-P-18B88962WG4128103NB4V5IY" style="margin-top: 2rem;"></div>
-  <script src="https://www.paypal.com/sdk/js?client-id=AZ4Hibrfpm_VsJcvEUOvSpNElrrCrAApZO_xQQUenOel7INeEGnj31ap9cCn3e7zcHkMpQqUQMtfXRyT&vault=true&intent=subscription" data-sdk-integration-source="button-factory"></script>
+  <div id="paypal-status" class="status" role="status" aria-live="polite" hidden></div>
+  <script src="https://www.paypal.com/sdk/js?client-id=AZ4Hibrfpm_VsJcvEUOvSpNElrrCrAApZO_xQQUenOel7INeEGnj31ap9cCn3e7zcHkMpQqUQMtfXRyT&vault=true&intent=subscription" data-sdk-integration-source="button-factory" id="paypal-sdk"></script>
   <script>
-    paypal.Buttons({
-        style: {
+    (function () {
+      var PLAN_ID = 'P-18B88962WG4128103NB4V5IY';
+      var CONTAINER = '#paypal-button-container-' + PLAN_ID;
+      var CONTACT = 'jimmylou27@yahoo.com';
+      var statusEl = document.getElementById('paypal-status');
+
+      function showStatus(kind, message) {
+        statusEl.className = 'status ' + kind;
+        statusEl.textContent = message;
+        statusEl.hidden = false;
+      }
+
+      function showFailure(context, error) {
+        console.error('PayPal subscription error (' + context + '):', error);
+        showStatus('error', 'We could not complete your subscription. Please try again, or email ' + CONTACT + ' and we will set it up manually.');
+      }
+
+      var sdk = document.getElementById('paypal-sdk');
+      sdk.addEventListener('error', function (event) {
+        showFailure('sdk-load', event);
+      });
+
+      function renderButtons() {
+        if (!window.paypal || !window.paypal.Buttons) {
+          showFailure('sdk-unavailable', new Error('PayPal SDK did not load'));
+          return;
+        }
+
+        var buttons = window.paypal.Buttons({
+          style: {
             shape: 'rect',
             color: 'gold',
             layout: 'vertical',
             label: 'subscribe'
-        },
-        createSubscription: function(data, actions) {
-          return actions.subscription.create({
-            plan_id: 'P-18B88962WG4128103NB4V5IY',
-            quantity: 1
-          });
-        },
-        onApprove: function(data, actions) {
-          alert("Subscription successful! ID: " + data.subscriptionID);
+          },
+          createSubscription: function (data, actions) {
+            statusEl.hidden = true;
+            var creation = actions.subscription.create({
+              plan_id: PLAN_ID,
+              quantity: 1
+            });
+            if (creation && typeof creation.catch === 'function') {
+              return creation.catch(function (error) {
+                showFailure('create-subscription', error);
+                throw error;
+              });
+            }
+            return creation;
+          },
+          onApprove: function (data) {
+            showStatus('success', 'Subscription successful! Your subscription ID is ' + data.subscriptionID + '. Keep it for your records.');
+          },
+          onCancel: function () {
+            showStatus('error', 'Subscription was cancelled before it completed. You can start again at any time.');
+          },
+          onError: function (error) {
+            showFailure('paypal-checkout', error);
+          }
+        });
+
+        try {
+          var rendered = buttons.render(CONTAINER);
+          if (rendered && typeof rendered.catch === 'function') {
+            rendered.catch(function (error) {
+              showFailure('render', error);
+            });
+          }
+        } catch (error) {
+          showFailure('render', error);
         }
-    }).render('#paypal-button-container-P-18B88962WG4128103NB4V5IY');
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', renderButtons);
+      } else {
+        renderButtons();
+      }
+    })();
   </script>
 </body>
 </html>

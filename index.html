@@ -302,6 +302,48 @@
       transform: scale(1.05);
       box-shadow: 0 4px 16px rgba(0,0,0,0.5);
     }
+
+    .form-status {
+      grid-column: span 2;
+      padding: 0.75rem 1rem;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      text-align: left;
+    }
+    .form-status[hidden] {
+      display: none;
+    }
+    .form-status.error {
+      background: rgba(120, 0, 0, 0.35);
+      border: 1px solid #7f1d1d;
+      color: #fff;
+    }
+    .form-status.info {
+      background: rgba(0, 0, 0, 0.2);
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      color: #fff;
+    }
+    .offer button[disabled] {
+      opacity: 0.6;
+      cursor: progress;
+    }
+
+    img.image-failed {
+      display: none;
+    }
+    .image-fallback {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 100%;
+      padding: 0.5rem;
+      background: #334155;
+      color: #cbd5e1;
+      font-size: 0.75rem;
+      text-align: center;
+      border-radius: 8px;
+    }
   </style>
 </head>
 <body>
@@ -337,13 +379,14 @@
   <section class="offer">
     <h2>Get Your App Idea Mockup for $500</h2>
     <p>Bring your app idea to life with vibrant, eye-catching mockups.</p>
-    <form action="https://formsubmit.co/jimmylou27@yahoo.com" method="POST">
+    <form id="idea-form" action="https://formsubmit.co/jimmylou27@yahoo.com" method="POST">
       <input type="hidden" name="_redirect" value="https://mockupapponline.netlify.app/thankyou.html" />
       <input type="hidden" name="_captcha" value="false" />
       <input type="text" name="name" placeholder="Your Name" required>
       <input type="email" name="email" placeholder="Your Email" required>
       <input type="tel" name="phone" placeholder="Your Phone Number">
       <textarea name="idea" placeholder="Describe Your Idea" rows="4" required></textarea>
+      <div id="form-status" class="form-status" role="status" aria-live="polite" hidden></div>
       <button type="submit">Submit Your Idea</button>
     </form>
   </section>
@@ -407,13 +450,87 @@
   <!-- Purchase Button -->
   <a href="https://www.paypal.com/ncp/payment/B67ZGQUYE62PG" class="buy-button" target="_blank" rel="noopener noreferrer">Buy Your $500 Mockup Now</a>
 
-</body>
   <section style="background: #ff4d4d; color: white; padding: 1.5rem; text-align: center; margin: 2rem auto; max-width: 800px; border-radius: 10px; box-shadow: 0 0 15px rgba(0,0,0,0.4); font-size: 0.95rem;">
     <p><strong>Disclaimer:</strong> We do not entertain any requests related to spamware, malware, spyware, or apps that violate any local or international laws. All app ideas submitted remain fully confidential. We do not steal, share, or replicate your intellectual property. Your trust and privacy are 100% respected.</p>
   </section>
   <footer>
     <p>© 2025 MockupApp. All rights reserved.</p>
   </footer>
-</body>
+
+  <script>
+    (function () {
+      var CONTACT = 'jimmylou27@yahoo.com';
+      var form = document.getElementById('idea-form');
+      var statusEl = document.getElementById('form-status');
+      var button = form.querySelector('button[type="submit"]');
+      var REDIRECT = form.querySelector('input[name="_redirect"]').value;
+      // FormSubmit's /ajax/ endpoint is CORS-enabled and reports failures as JSON,
+      // unlike the plain endpoint which redirects the whole page.
+      var AJAX_ACTION = form.action.replace('formsubmit.co/', 'formsubmit.co/ajax/');
+
+      function showStatus(kind, message) {
+        statusEl.className = 'form-status ' + kind;
+        statusEl.textContent = message;
+        statusEl.hidden = false;
+      }
+
+      function showFailure(error) {
+        console.error('Idea form submission failed:', error);
+        showStatus('error', 'We could not submit your idea. Please try again, or email it directly to ' + CONTACT + '.');
+      }
+
+      form.addEventListener('submit', function (event) {
+        if (!window.fetch || !window.FormData) {
+          return;
+        }
+
+        event.preventDefault();
+        statusEl.hidden = true;
+        button.disabled = true;
+        showStatus('info', 'Sending your idea…');
+
+        fetch(AJAX_ACTION, {
+          method: 'POST',
+          body: new FormData(form),
+          headers: { Accept: 'application/json' }
+        }).then(function (response) {
+          if (!response.ok) {
+            throw new Error('Form endpoint responded with HTTP ' + response.status);
+          }
+          return response.json();
+        }).then(function (result) {
+          if (result && String(result.success) !== 'true') {
+            throw new Error('Form endpoint rejected the submission: ' + (result.message || 'unknown reason'));
+          }
+          window.location.href = REDIRECT;
+        }).catch(function (error) {
+          showFailure(error);
+        }).then(function () {
+          button.disabled = false;
+        });
+      });
+
+      function replaceWithFallback(image) {
+        if (image.classList.contains('image-failed')) {
+          return;
+        }
+        console.error('Image failed to load:', image.currentSrc || image.src);
+        image.classList.add('image-failed');
+        var fallback = document.createElement('div');
+        fallback.className = 'image-fallback';
+        fallback.textContent = image.alt || 'Preview unavailable';
+        image.insertAdjacentElement('afterend', fallback);
+      }
+
+      Array.prototype.forEach.call(document.images, function (image) {
+        image.addEventListener('error', function () {
+          replaceWithFallback(image);
+        });
+        if (image.complete && image.naturalWidth === 0) {
+          replaceWithFallback(image);
+        }
+      });
+    })();
+  </script>
 </body>
 </html>
