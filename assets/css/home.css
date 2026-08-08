@@ -1,0 +1,300 @@
+/* Styles specific to the portfolio landing page. */
+body {
+  padding-bottom: 60px;
+}
+
+header {
+  background: var(--gradient-brand);
+  padding: 2rem 1rem;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+  color: white;
+}
+
+header h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+}
+
+header p {
+  font-weight: 400;
+  margin-top: 0.5rem;
+}
+
+footer {
+  text-align: center;
+  padding: 1rem;
+  background: var(--color-surface);
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  color: var(--color-text-muted);
+}
+
+.container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 2rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.app {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 1px solid var(--color-accent);
+  box-shadow: 0 0 10px rgba(99, 102, 241, 0.4);
+}
+
+.app:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+.app h2,
+.app h2 a {
+  color: var(--color-accent-soft);
+  font-weight: 500;
+  text-decoration: none;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.app h2 {
+  margin-bottom: 0.75rem;
+}
+
+.app h2 a:hover {
+  text-decoration: underline;
+}
+
+.app p {
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+}
+
+.details {
+  max-width: 800px;
+  margin: 2rem auto;
+  text-align: left;
+}
+
+.details h3 {
+  font-size: 1.75rem;
+  margin-bottom: 1rem;
+  color: var(--color-accent-softer);
+}
+
+.details ul {
+  list-style-type: disc;
+  margin-left: 1.5rem;
+}
+
+.details ul li {
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+}
+
+.disclaimer {
+  background: var(--color-danger);
+  color: white;
+  padding: 1.5rem;
+  text-align: center;
+  margin: 2rem auto;
+  max-width: 800px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
+  font-size: 0.95rem;
+}
+
+/* Lead capture form */
+.offer {
+  background: linear-gradient(135deg, #ff7e5f, #feb47b);
+  padding: 2rem;
+  border-radius: var(--radius-lg);
+  margin: 2rem auto;
+  text-align: center;
+  color: #fff;
+  width: 100%;
+}
+
+.offer h2 {
+  margin-bottom: 1rem;
+  font-size: 2rem;
+}
+
+.offer p {
+  margin-bottom: 1.5rem;
+}
+
+.offer form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.offer input,
+.offer textarea {
+  padding: 0.75rem;
+  border: none;
+  border-radius: var(--radius-md);
+  font-size: 1rem;
+}
+
+.offer button {
+  grid-column: span 2;
+  padding: 0.75rem;
+  background: var(--color-accent);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius-md);
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.offer button:hover {
+  background: var(--color-accent-strong);
+}
+
+/* Phone mockup gallery */
+.mockups {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  margin: 2rem 0;
+}
+
+.mockup-item {
+  width: 180px;
+  height: 360px;
+  background: linear-gradient(145deg, var(--color-accent), var(--color-accent-strong));
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
+  transform: rotate(-5deg);
+  transition: transform 0.3s ease;
+  position: relative;
+}
+
+.mockup-item:nth-child(2) { transform: rotate(3deg); }
+.mockup-item:nth-child(3) { transform: rotate(-2deg); }
+.mockup-item:nth-child(4) { transform: rotate(4deg); }
+
+.mockup-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.mockup-item:hover {
+  transform: scale(1.05) rotate(0deg);
+  transition: transform 0.3s ease-in-out;
+}
+
+.screen {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.screen .tab-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 40px;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  color: #fff;
+  font-size: 0.8rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.screen .tab-bar span {
+  flex: 1;
+  text-align: center;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  padding: 0.5rem;
+  text-align: center;
+}
+
+.overlay h4 {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.overlay p {
+  margin: 0;
+  font-size: 0.75rem;
+}
+
+.demo-gallery {
+  margin-top: 0.75rem;
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+}
+
+.demo-gallery img {
+  width: 80px;
+  height: 140px;
+  object-fit: cover;
+  border-radius: var(--radius-md);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.demo-gallery img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
+}
+
+.buy-button {
+  margin: 2rem auto;
+  max-width: 300px;
+}
+
+@keyframes flash {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+.flash {
+  display: inline-block;
+  animation: flash 1.5s ease-in-out infinite;
+}
+
+@media (max-width: 768px) {
+  header h1 {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .mockups {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .mockup-item {
+    width: 90vw;
+    height: calc(90vw * 2); /* maintain aspect ratio */
+    transform: rotate(0deg); /* remove rotation on mobile */
+  }
+
+  .screen .tab-bar {
+    font-size: 0.7rem;
+  }
+}

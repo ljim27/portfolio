@@ -5,304 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Jimmy Louis | App Portfolio</title>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: 'Roboto', sans-serif;
-      background: linear-gradient(to right, #0f172a, #1e293b);
-      color: #e2e8f0;
-      line-height: 1.6;
-      padding-bottom: 60px;
-    }
-
-    header {
-      background: linear-gradient(135deg, #6366f1, #8b5cf6);
-      padding: 2rem 1rem;
-      text-align: center;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.4);
-      color: white;
-    }
-
-    header h1 {
-      font-size: 2.5rem;
-      font-weight: 700;
-    }
-
-    header p {
-      font-weight: 400;
-      margin-top: 0.5rem;
-    }
-
-    .container {
-      max-width: 1200px;
-      margin: auto;
-      padding: 2rem;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1.5rem;
-    }
-
-    .app {
-      background: #1e293b;
-      padding: 1.5rem;
-      border-radius: 12px;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      border: 1px solid #6366f1;
-      box-shadow: 0 0 10px rgba(99, 102, 241, 0.4);
-    }
-
-    .app:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 8px 16px rgba(0,0,0,0.3);
-    }
-
-    .app h2 {
-      color: #a5b4fc;
-      margin-bottom: 0.75rem;
-      font-weight: 500;
-      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
-    }
-    .app h2 a {
-      color: #a5b4fc;
-      text-decoration: none;
-      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
-    }
-    .app h2 a:hover {
-      text-decoration: underline;
-    }
-
-    .app p {
-      font-size: 0.9rem;
-      color: #94a3b8;
-    }
-
-    footer {
-      text-align: center;
-      padding: 1rem;
-      background: #1e293b;
-      position: fixed;
-      width: 100%;
-      bottom: 0;
-      color: #94a3b8;
-    }
-
-    @media (max-width: 768px) {
-      header h1 {
-        font-size: 2rem;
-      }
-    }
-
-    /* Offer and Mockup Sections */
-    .offer {
-      background: linear-gradient(135deg, #ff7e5f, #feb47b);
-      padding: 2rem;
-      border-radius: 12px;
-      margin: 2rem auto;
-      text-align: center;
-      color: #fff;
-      box-sizing: border-box;
-      width: 100%;
-      max-width: none;
-    }
-    .offer h2 {
-      margin-bottom: 1rem;
-      font-size: 2rem;
-    }
-    .offer p {
-      margin-bottom: 1.5rem;
-    }
-    .offer form {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1rem;
-      max-width: 800px;
-      margin: 0 auto;
-    }
-    .offer input,
-    .offer textarea {
-      padding: 0.75rem;
-      border: none;
-      border-radius: 8px;
-      font-size: 1rem;
-    }
-    .offer button {
-      grid-column: span 2;
-      padding: 0.75rem;
-      background: #6366f1;
-      color: #fff;
-      border: none;
-      border-radius: 8px;
-      font-size: 1rem;
-      cursor: pointer;
-    }
-    .offer button:hover {
-      background: #8b5cf6;
-    }
-    .mockups {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 1rem;
-      margin: 2rem 0;
-    }
-    .mockup-item {
-      width: 180px;
-      height: 360px;
-      background: linear-gradient(145deg, #6366f1, #8b5cf6);
-      border-radius: 12px;
-      overflow: hidden;
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
-      transform: rotate(-5deg);
-      transition: transform 0.3s ease;
-      position: relative;
-    }
-    .mockup-item:nth-child(2) { transform: rotate(3deg); }
-    .mockup-item:nth-child(3) { transform: rotate(-2deg); }
-    .mockup-item:nth-child(4) { transform: rotate(4deg); }
-    .mockup-item img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-    .mockup-item:hover {
-      transform: scale(1.05) rotate(0deg);
-      transition: transform 0.3s ease-in-out;
-    }
-    .screen {
-      position: relative;
-      width: 100%;
-      height: 100%;
-    }
-    .buy-button {
-      display: inline-block;
-      margin: 2rem auto;
-      padding: 1rem 2rem;
-      background: linear-gradient(90deg, #ff4d4d, #ff9900);
-      color: #fff;
-      border: none;
-      border-radius: 50px;
-      font-size: 1.25rem;
-      cursor: pointer;
-      box-shadow: 0 6px 15px rgba(255, 77, 77, 0.4);
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-      max-width: 300px;
-      text-align: center;
-      white-space: nowrap;
-    }
-    .buy-button:hover {
-      transform: scale(1.05);
-      box-shadow: 0 8px 20px rgba(255, 153, 0, 0.6);
-    }
-    @keyframes flash {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.4; }
-    }
-    .flash {
-      display: inline-block;
-      animation: flash 1.5s ease-in-out infinite;
-    }
-    .details {
-      background: #1e293b;
-      color: #e2e8f0;
-      max-width: 800px;
-      margin: 2rem auto;
-      padding: 1.5rem;
-      border-radius: 12px;
-      text-align: left;
-    }
-    .details h3 {
-      font-size: 1.75rem;
-      margin-bottom: 1rem;
-      color: #c7d2fe;
-    }
-    .details ul {
-      list-style-type: disc;
-      margin-left: 1.5rem;
-    }
-    .details ul li {
-      margin-bottom: 0.5rem;
-      font-size: 1rem;
-    }
-    .screen .tab-bar {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      height: 40px;
-      background: rgba(0,0,0,0.6);
-      display: flex;
-      justify-content: space-around;
-      align-items: center;
-      color: #fff;
-      font-size: 0.8rem;
-      border-top: 1px solid rgba(255,255,255,0.3);
-    }
-    .screen .tab-bar span {
-      flex: 1;
-      text-align: center;
-    }
-
-    @media (max-width: 480px) {
-      .mockups {
-        flex-direction: column;
-        align-items: center;
-      }
-
-      .mockup-item {
-        width: 90vw;
-        height: calc(90vw * 2); /* maintain aspect ratio */
-        transform: rotate(0deg); /* remove rotation on mobile */
-      }
-
-      .screen .tab-bar {
-        font-size: 0.7rem;
-      }
-    }
-    .overlay {
-      position: absolute;
-      top: 0;
-      width: 100%;
-      background: rgba(0,0,0,0.6);
-      color: #fff;
-      padding: 0.5rem;
-      text-align: center;
-    }
-    .overlay h4 {
-      margin: 0;
-      font-size: 1rem;
-      font-weight: bold;
-    }
-    .overlay p {
-      margin: 0;
-      font-size: 0.75rem;
-    }
-    .demo-gallery {
-      margin-top: 0.75rem;
-      display: flex;
-      gap: 0.5rem;
-      justify-content: center;
-    }
-
-    .demo-gallery img {
-      width: 80px;
-      height: 140px;
-      object-fit: cover;
-      border-radius: 8px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
-      cursor: pointer;
-      transition: transform 0.2s ease;
-    }
-
-    .demo-gallery img:hover {
-      transform: scale(1.05);
-      box-shadow: 0 4px 16px rgba(0,0,0,0.5);
-    }
-  </style>
+  <link rel="stylesheet" href="assets/css/base.css">
+  <link rel="stylesheet" href="assets/css/home.css">
 </head>
 <body>
   <header>
@@ -311,17 +15,17 @@
   </header>
 
   <div class="container">
-    <div class="app">
+    <div class="app card">
       <h2><a href="https://apps.apple.com/us/app/binaryme/id6742085556" target="_blank" rel="noopener noreferrer">BinaryMe2</a></h2>
       <p>Mobile compatibility analysis app using binary logic for deeper insights.</p>
     </div>
-    <div class="app">
+    <div class="app card">
       <h2><a href="https://apps.apple.com/us/app/screenshield/id6747040428" target="_blank" rel="noopener noreferrer">ScreenShield</a></h2>
       <p>Fake installation screens to deter unauthorized phone use with customizable animations.</p>
     </div>
   </div>
 
-  <section class="details">
+  <section class="details card">
     <h3>Your $500 Mockup Includes:</h3>
     <ul>
       <li>High-fidelity app screens with real device mockups</li>
@@ -405,15 +109,13 @@
     </div>
   </section>
   <!-- Purchase Button -->
-  <a href="https://www.paypal.com/ncp/payment/B67ZGQUYE62PG" class="buy-button" target="_blank" rel="noopener noreferrer">Buy Your $500 Mockup Now</a>
+  <a href="https://www.paypal.com/ncp/payment/B67ZGQUYE62PG" class="cta-button buy-button" target="_blank" rel="noopener noreferrer">Buy Your $500 Mockup Now</a>
 
-</body>
-  <section style="background: #ff4d4d; color: white; padding: 1.5rem; text-align: center; margin: 2rem auto; max-width: 800px; border-radius: 10px; box-shadow: 0 0 15px rgba(0,0,0,0.4); font-size: 0.95rem;">
+  <section class="disclaimer card">
     <p><strong>Disclaimer:</strong> We do not entertain any requests related to spamware, malware, spyware, or apps that violate any local or international laws. All app ideas submitted remain fully confidential. We do not steal, share, or replicate your intellectual property. Your trust and privacy are 100% respected.</p>
   </section>
   <footer>
     <p>© 2025 MockupApp. All rights reserved.</p>
   </footer>
-</body>
 </body>
 </html>
