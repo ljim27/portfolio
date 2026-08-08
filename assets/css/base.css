@@ -1,0 +1,68 @@
+/* Design tokens and styles shared by every page. */
+:root {
+  --color-bg-start: #0f172a;
+  --color-bg-end: #1e293b;
+  --color-surface: #1e293b;
+  --color-text: #e2e8f0;
+  --color-text-muted: #94a3b8;
+  --color-accent: #6366f1;
+  --color-accent-strong: #8b5cf6;
+  --color-accent-soft: #a5b4fc;
+  --color-accent-softer: #c7d2fe;
+  --color-danger: #ff4d4d;
+  --color-warning: #ff9900;
+
+  --gradient-page: linear-gradient(to right, var(--color-bg-start), var(--color-bg-end));
+  --gradient-brand: linear-gradient(135deg, var(--color-accent), var(--color-accent-strong));
+  --gradient-cta: linear-gradient(90deg, var(--color-danger), var(--color-warning));
+
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-pill: 50px;
+
+  --font-body: 'Roboto', sans-serif;
+  --transition-lift: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-body);
+  background: var(--gradient-page);
+  color: var(--color-text);
+  line-height: 1.6;
+}
+
+/* Raised panel on the page background. */
+.card {
+  background: var(--color-surface);
+  color: var(--color-text);
+  padding: 1.5rem;
+  border-radius: var(--radius-lg);
+}
+
+/* Gradient pill call to action, used as both a link and a button. */
+.cta-button {
+  display: inline-block;
+  padding: 1rem 2rem;
+  background: var(--gradient-cta);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius-pill);
+  font-size: 1.25rem;
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  box-shadow: 0 6px 15px rgba(255, 77, 77, 0.4);
+  transition: var(--transition-lift);
+}
+
+.cta-button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 20px rgba(255, 153, 0, 0.6);
+}
